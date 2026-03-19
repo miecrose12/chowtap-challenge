@@ -12,6 +12,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.auth.loading);
   const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordRequirements, setShowPasswordRequirements] = useState(false);
 
   const { formData, errors, touched, handleChange, handleBlur, handleSubmit, setErrors } = useForm(
     { email: '', password: '', rememberMe: false },
@@ -41,13 +42,37 @@ const Login = () => {
     }
   );
 
+  const validatePasswordStrength = (password) => {
+    if (!password) return { isValid: false, message: 'Password is required' };
+    if (password.length < 6) return { isValid: false, message: 'Password must be at least 6 characters' };
+    if (!/[A-Z]/.test(password)) return { isValid: false, message: 'Password must contain at least one capital letter' };
+    if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+      return { isValid: false, message: 'Password must contain at least one special character (!@#$%^&* etc.)' };
+    }
+    return { isValid: true, message: '' };
+  };
+
   const formErrors = {
     email: touched.email
       ? validateEmail(formData.email) ? '' : 'Please enter a valid email address'
       : '',
     password: touched.password
-      ? validatePassword(formData.password) ? '' : 'Password must be at least 6 characters'
+      ? validatePasswordStrength(formData.password).message
       : '',
+  };
+
+  const hasMinLength = formData.password.length >= 6;
+  const hasCapital = /[A-Z]/.test(formData.password);
+  const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(formData.password);
+
+  const handlePasswordChange = (e) => {
+    handleChange(e);
+    setShowPasswordRequirements(true);
+  };
+
+  const handlePasswordBlur = (e) => {
+    handleBlur(e);
+    setShowPasswordRequirements(false);
   };
 
   return (
@@ -59,7 +84,6 @@ const Login = () => {
         </div>
       </section>
 
-
       <section className="flex flex-col items-center justify-center w-full lg:w-1/2 px-8 md:px-16 lg:px-24">
         <div className="w-full max-w-md">
 
@@ -67,7 +91,6 @@ const Login = () => {
             <img src={logo} alt="Kanban Logo" className="w-12 h-12 object-contain" />
           </div>
 
-      
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-2">Log in to your account</h2>
             <p className="text-gray-500">Welcome back! Please enter your details.</p>
@@ -75,7 +98,6 @@ const Login = () => {
 
           <form onSubmit={handleSubmit} className="space-y-5">
 
-          
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                 Email
@@ -99,7 +121,6 @@ const Login = () => {
               )}
             </div>
 
-          
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
                 Password
@@ -110,8 +131,9 @@ const Login = () => {
                   type={showPassword ? 'text' : 'password'}
                   name="password"
                   value={formData.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
+                  onChange={handlePasswordChange}
+                  onBlur={handlePasswordBlur}
+                  onFocus={() => setShowPasswordRequirements(true)}
                   placeholder="Enter your password"
                   className={`w-full px-4 py-3 rounded-lg border transition-colors focus:outline-none focus:ring-2 ${
                     formErrors.password
@@ -130,9 +152,37 @@ const Login = () => {
               {formErrors.password && (
                 <p className="mt-1 text-sm text-red-600">{formErrors.password}</p>
               )}
+
+              {showPasswordRequirements && formData.password && (
+                <div className="mt-3 p-3 bg-gray-50 rounded-lg border border-gray-200 space-y-2 animate-fadeIn">
+                  <div className={`flex items-center text-xs font-medium transition-colors ${hasMinLength ? 'text-green-600' : 'text-gray-600'}`}>
+                    <span className={`w-4 h-4 rounded-full flex items-center justify-center mr-2 text-white text-xs font-bold transition-colors ${
+                      hasMinLength ? 'bg-green-500' : 'bg-red-400'
+                    }`}>
+                      {hasMinLength ? '✓' : '✕'}
+                    </span>
+                    At least 6 characters
+                  </div>
+                  <div className={`flex items-center text-xs font-medium transition-colors ${hasCapital ? 'text-green-600' : 'text-gray-600'}`}>
+                    <span className={`w-4 h-4 rounded-full flex items-center justify-center mr-2 text-white text-xs font-bold transition-colors ${
+                      hasCapital ? 'bg-green-500' : 'bg-red-400'
+                    }`}>
+                      {hasCapital ? '✓' : '✕'}
+                    </span>
+                    At least one capital letter (A-Z)
+                  </div>
+                  <div className={`flex items-center text-xs font-medium transition-colors ${hasSpecialChar ? 'text-green-600' : 'text-gray-600'}`}>
+                    <span className={`w-4 h-4 rounded-full flex items-center justify-center mr-2 text-white text-xs font-bold transition-colors ${
+                      hasSpecialChar ? 'bg-green-500' : 'bg-red-400'
+                    }`}>
+                      {hasSpecialChar ? '✓' : '✕'}
+                    </span>
+                    One special character (!@#$%^&* etc.)
+                  </div>
+                </div>
+              )}
             </div>
 
-     
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
@@ -152,12 +202,10 @@ const Login = () => {
               </a>
             </div>
 
-      
             {errors.form && (
               <p className="text-sm text-red-600 text-center">{errors.form}</p>
             )}
 
-    
             <button
               type="submit"
               disabled={loading || Object.keys(formErrors).some((k) => formErrors[k])}
@@ -166,7 +214,6 @@ const Login = () => {
               {loading ? 'Signing in…' : 'Sign in'}
             </button>
 
-       
             <button
               type="button"
               className="w-full flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none transition-all"
