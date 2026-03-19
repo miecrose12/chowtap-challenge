@@ -10,7 +10,7 @@ import revenue from '../assets/Report.svg';
 import profit from '../assets/manage store.svg';
 import cost from '../assets/settings.svg';
 import purchase from '../assets/Suppliers.svg';
-import cost1 from '../assets/Log out.svg';
+import cost1 from '../assets/Log Out.svg';
 import cancel from '../assets/Order.svg';
 import quantity from '../assets/Quantity.svg';
 import logo from '../assets/logosidebar.svg';
