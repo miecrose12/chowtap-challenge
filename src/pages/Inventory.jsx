@@ -6,7 +6,6 @@ import KPICardsSection from '../components/KpiCardsSection';
 
 const ITEMS_PER_PAGE = 10;
 
-/* Availability — plain colored text, no pill */
 const availabilityClass = (status) => {
   if (status === 'In-stock')     return 'text-sm font-semibold text-emerald-500';
   if (status === 'Out of stock') return 'text-sm font-semibold text-rose-500';
@@ -30,14 +29,14 @@ const Inventory = () => {
     <ProtectedLayout>
       <div className="p-8 space-y-8">
 
-        {/* KPI Section */}
+
         <KPICardsSection />
 
-        {/* Products Table */}
+
         <section>
           <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
 
-            {/* Toolbar */}
+    
             <div className="p-6 flex items-center justify-between">
               <h2 className="text-xl font-semibold text-slate-800">Products</h2>
               <div className="flex gap-3">
@@ -67,11 +66,11 @@ const Inventory = () => {
               </div>
             </div>
 
-            {/* Table */}
+ 
             <div className="overflow-x-auto">
               <table className="w-full text-left" style={{ borderCollapse: 'collapse' }}>
 
-                {/* thead — Custom border color #D0D3D9 */}
+     
                 <thead>
                   <tr style={{ borderBottom: '1px solid #D0D3D9' }}>
                     <th className="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">
@@ -95,7 +94,7 @@ const Inventory = () => {
                   </tr>
                 </thead>
 
-                {/* tbody — Custom border color #D0D3D9 */}
+        
                 <tbody>
                   {paginatedProducts.map((product, index) => (
                     <tr 
@@ -129,7 +128,6 @@ const Inventory = () => {
               </table>
             </div>
 
-            {/* Pagination */}
             <div className="px-6 py-4 flex items-center justify-between bg-white">
               <button
                 onClick={() => setPage((p) => Math.max(1, p - 1))}

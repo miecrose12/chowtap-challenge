@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { Bell } from 'lucide-react';
 import cost from '../assets/search.svg';
-import personImage from '../assets/person.svg'; // Add your person image path here
+import personImage from '../assets/person.svg'; 
 
 const TopBar = () => {
   const [searchValue, setSearchValue] = useState('');
 
   return (
     <header className="w-full h-20 bg-white border-b border-slate-200 px-8 flex items-center justify-between sticky top-0 z-10">
-      {/* Search Bar - Compact size */}
       <div className="w-80">
         <div className="relative w-full">
           <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -24,16 +23,15 @@ const TopBar = () => {
         </div>
       </div>
 
-      {/* Right side actions - Bell and Profile */}
       <div className="flex items-center gap-6 ml-8">
-        {/* Bell Icon Button */}
+
         <button className="text-slate-400 hover:text-slate-600 transition-colors p-1 hover:bg-slate-50 rounded-md">
           <Bell className="w-5 h-5" strokeWidth={2} />
         </button>
 
-        {/* Profile Section */}
+  
         <div className="flex items-center gap-3 pl-4 border-l border-slate-200">
-          {/* Avatar - Person Image */}
+     
           <img
             src={personImage}
             alt="profile"

@@ -53,32 +53,29 @@ const Login = () => {
   return (
     <div className="min-h-screen flex bg-white overflow-hidden">
 
-      {/* ── Left Side: Branding (desktop only, pure white bg) ── */}
       <section className="hidden lg:flex flex-col items-center justify-center w-1/2 bg-white border-r border-gray-100">
         <div className="flex flex-col items-center">
           <img src={logo} alt="Kanban Logo" className="w-64 h-64 object-contain" />
         </div>
       </section>
 
-      {/* ── Right Side: Login Form ── */}
+
       <section className="flex flex-col items-center justify-center w-full lg:w-1/2 px-8 md:px-16 lg:px-24">
         <div className="w-full max-w-md">
 
-          {/* Small logo (mobile / form header) */}
           <div className="flex justify-center mb-6">
             <img src={logo} alt="Kanban Logo" className="w-12 h-12 object-contain" />
           </div>
 
-          {/* Heading */}
+      
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-2">Log in to your account</h2>
             <p className="text-gray-500">Welcome back! Please enter your details.</p>
           </div>
 
-          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
 
-            {/* Email */}
+          
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                 Email
@@ -102,7 +99,7 @@ const Login = () => {
               )}
             </div>
 
-            {/* Password */}
+          
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
                 Password
@@ -135,7 +132,7 @@ const Login = () => {
               )}
             </div>
 
-            {/* Remember me + Forgot password */}
+     
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
@@ -155,12 +152,12 @@ const Login = () => {
               </a>
             </div>
 
-            {/* Form-level error */}
+      
             {errors.form && (
               <p className="text-sm text-red-600 text-center">{errors.form}</p>
             )}
 
-            {/* Submit */}
+    
             <button
               type="submit"
               disabled={loading || Object.keys(formErrors).some((k) => formErrors[k])}
@@ -169,7 +166,7 @@ const Login = () => {
               {loading ? 'Signing in…' : 'Sign in'}
             </button>
 
-            {/* Google */}
+       
             <button
               type="button"
               className="w-full flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none transition-all"
@@ -184,7 +181,6 @@ const Login = () => {
             </button>
           </form>
 
-          {/* Sign up link */}
           <p className="mt-10 text-center text-sm text-gray-500">
             Don't have an account?{' '}
             <a href="#" className="font-semibold text-blue-700 hover:text-blue-800">
