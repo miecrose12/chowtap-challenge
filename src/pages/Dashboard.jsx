@@ -7,14 +7,14 @@ import TopSellingStock from '../components/TopSellingStock';
 import LowStockProducts from '../components/LowStockProducts';
 import dashboardIcon from '../assets/Sales.svg';
 import revenue from '../assets/Revenue.svg';
-import profit from '../assets/profit.svg';
-import cost from '../assets/cost.svg';
-import purchase from '../assets/purchase.svg';
+import profit from '../assets/Profit.svg';
+import cost from '../assets/Cost.svg';
+import purchase from '../assets/Purchase.svg';
 import cost1 from '../assets/Cost (1).svg';
 import cancel from '../assets/Cancel.svg';
 import quantity from '../assets/Quantity.svg';
-import way from '../assets/on the way.svg';
-import suppliers from '../assets/suppliers (1).svg';
+import way from '../assets/On the way.svg';
+import suppliers from '../assets/Suppliers (1).svg';
 import categories from '../assets/categories.svg';
 
 
