@@ -183,7 +183,7 @@ chowtap-frontend/
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/yourusername/chowtap-frontend.git
+git clone https://github.com/miecrose12/chowtap-challenge.git
 cd chowtap-frontend
 ```
 
