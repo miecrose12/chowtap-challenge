@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import categories from '../assets/rectangle 71.svg';
+import categories from '../assets/Rectangle 71.svg';
 
 const LowStockProducts = () => {
   const { lowStockProducts } = useSelector((state) => state.dashboard);

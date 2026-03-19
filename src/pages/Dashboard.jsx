@@ -15,7 +15,7 @@ import cancel from '../assets/Cancel.svg';
 import quantity from '../assets/Quantity.svg';
 import way from '../assets/On the way.svg';
 import suppliers from '../assets/Suppliers (1).svg';
-import categories from '../assets/categories.svg';
+import categories from '../assets/Categories.svg';
 
 
 

@@ -6,12 +6,12 @@ import toast from 'react-hot-toast';
 
 // Import all icon images
 import dashboardIcon from '../assets/dahboard.svg';
-import revenue from '../assets/report.svg';
+import revenue from '../assets/Report.svg';
 import profit from '../assets/manage store.svg';
 import cost from '../assets/settings.svg';
-import purchase from '../assets/suppliers.svg';
-import cost1 from '../assets/log out.svg';
-import cancel from '../assets/order.svg';
+import purchase from '../assets/Suppliers.svg';
+import cost1 from '../assets/Log out.svg';
+import cancel from '../assets/Order.svg';
 import quantity from '../assets/Quantity.svg';
 import logo from '../assets/logosidebar.svg';
 

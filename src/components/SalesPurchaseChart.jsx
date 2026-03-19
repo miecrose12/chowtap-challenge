@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
   Cell,
 } from 'recharts';
-import categories from '../assets/calendar.svg';
+import categories from '../assets/Calendar.svg';
 
 
 const GradientDefs = () => (
