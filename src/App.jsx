@@ -17,9 +17,6 @@ const ProtectedRoute = ({ children }) => {
 
 function App() {
   useEffect(() => {
-    // This effect ensures localStorage is checked on app mount
-    // The authSlice will automatically restore state from localStorage
-    // when the store is initialized, but this provides an extra safety check
     const savedAuth = localStorage.getItem('auth');
     if (savedAuth) {
       console.log('Auth restored from localStorage');

@@ -119,7 +119,6 @@ const KPICardsSection = () => {
       </div>
 
       <style>{`
-        /* Typography - Exact matching */
         .stat-label {
           font-weight: 600;
           font-size: 0.95rem;
