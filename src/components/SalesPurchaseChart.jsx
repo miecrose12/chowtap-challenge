@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import {
   BarChart,
   Bar,
@@ -8,7 +9,6 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  Cell,
 } from 'recharts';
 import categories from '../assets/Calendar.svg';
 
@@ -16,7 +16,6 @@ import categories from '../assets/Calendar.svg';
 const GradientDefs = () => (
   <svg width={0} height={0} style={{ position: 'absolute', overflow: 'hidden' }}>
     <defs>
-
       <linearGradient id="gradPurchase" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0%"      stopColor="#817AF3" />
         <stop offset="47.92%" stopColor="#74B0FA" />
@@ -78,48 +77,33 @@ const CustomTooltip = ({ active, payload, label }) => {
   );
 };
 
-const CHART_DATA = [
-  { month: 'Jan', purchase: 54000, sales: 48000 },
-  { month: 'Feb', purchase: 57000, sales: 46000 },
-  { month: 'Mar', purchase: 44000, sales: 52000 },
-  { month: 'Apr', purchase: 36000, sales: 43000 },
-  { month: 'May', purchase: 43000, sales: 45000 },
-  { month: 'Jun', purchase: 27000, sales: 41000 },
-  { month: 'Jul', purchase: 54000, sales: 49000 },
-  { month: 'Aug', purchase: 44000, sales: 42000 },
-  { month: 'Sep', purchase: 44000, sales: 43000 },
-];
-
-const Y_TICKS = [10000, 20000, 30000, 40000, 50000, 60000];
-/* Full numbers with comma separator matching the screenshot: 10,000  20,000 … */
 const fmtY = (v) => v.toLocaleString();
 
-const SalesPurchaseChart = ({ data }) => {
+const SalesPurchaseChart = () => {
+  const { data, yAxisTicks, yAxisDomain, filterLabel } = useSelector(
+    (state) => state.dashboard.salesPurchaseChart
+  );
+
   return (
     <div className="bg-white rounded-2xl shadow-sm p-5">
       <GradientDefs />
 
       <div className="flex justify-between items-center mb-4">
-        <h2 className="font-inter  font-medium text-20px] leading-[30px] tracking-normal text-gray-700">Sales &amp; Purchase</h2>
-        
-          <div className="flex items-center gap-1.5 border border-gray-200 px-3 py-1.5 rounded-lg text-xs text-gray-500 hover:bg-gray-50 transition-colors cursor-pointer">
-    <img src={categories} alt="Calendar Icon" className="w-4 h-4" />
-    <span>Weekly</span>
-  </div>
+        <h2 className="font-inter font-medium text-[20px] leading-[30px] tracking-normal text-gray-700">
+          Sales &amp; Purchase
+        </h2>
+
+        <div className="flex items-center gap-1.5 border border-gray-200 px-3 py-1.5 rounded-lg text-xs text-gray-500 hover:bg-gray-50 transition-colors cursor-pointer">
+          <img src={categories} alt="Calendar Icon" className="w-4 h-4" />
+          <span>{filterLabel}</span>
+        </div>
       </div>
 
       <ResponsiveContainer width="100%" height={265}>
         <BarChart
-          data={CHART_DATA}
-          margin={{
-            top: 10,
-            right: 8,
-            left: 20,   
-            bottom: 0,
-          }}
-        
+          data={data}
+          margin={{ top: 10, right: 8, left: 20, bottom: 0 }}
           barCategoryGap="20%"
-        
           barGap={0}
         >
           <CartesianGrid
@@ -137,8 +121,8 @@ const SalesPurchaseChart = ({ data }) => {
             dy={6}
           />
           <YAxis
-            domain={[0, 60000]}
-            ticks={Y_TICKS}
+            domain={yAxisDomain}
+            ticks={yAxisTicks}
             tickFormatter={fmtY}
             axisLine={false}
             tickLine={false}
@@ -154,7 +138,7 @@ const SalesPurchaseChart = ({ data }) => {
           <Bar dataKey="sales"    shape={<SalesBar />}    maxBarSize={12} isAnimationActive />
         </BarChart>
       </ResponsiveContainer>
-      
+
       <div className="flex items-center gap-5 mt-2 pl-16">
         <span className="flex items-center gap-1.5 text-xs text-gray-500" style={{ fontFamily: 'Inter,sans-serif' }}>
           <span style={{
