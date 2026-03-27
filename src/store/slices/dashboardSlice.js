@@ -1,6 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
+  salesCards: [
+    { label: 'Sales', value: '₦ 832', image: 'dashboardIcon' },
+    { label: 'Revenue', value: '₦ 18,300', image: 'cancel' },
+    { label: 'Profit', value: '₦ 868', image: 'profit' },
+    { label: 'Cost', value: '₦ 868', image: 'cost' },
+  ],
+
+  purchaseCards: [
+    { label: 'Purchase', value: '82', image: 'purchase' },
+    { label: 'Cost', value: '₦ 13,573', image: 'cost1' },
+    { label: 'Cancel', value: '5', image: 'cancel' },
+    { label: 'Return', value: '₦ 17,432', image: 'profit' },
+  ],
+
   salesPurchaseChart: {
     data: [
       { month: 'Jan', purchase: 54000, sales: 48000 },
@@ -21,13 +35,13 @@ const initialState = {
   orderSummaryChart: {
     data: [
       { month: 'Jan', ordered: 3800, delivered: 2800 },
-      { month: '',    ordered: 1600, delivered: 3200 },
+      { month: '', ordered: 1600, delivered: 3200 },
       { month: 'Feb', ordered: 2700, delivered: 3700 },
-      { month: '',    ordered: 2300, delivered: 3100 },
+      { month: '', ordered: 2300, delivered: 3100 },
       { month: 'Mar', ordered: 2500, delivered: 2400 },
-      { month: '',    ordered: 2000, delivered: 3000 },
+      { month: '', ordered: 2000, delivered: 3000 },
       { month: 'Apr', ordered: 1400, delivered: 3300 },
-      { month: '',    ordered: 2000, delivered: 2200 },
+      { month: '', ordered: 2000, delivered: 2200 },
       { month: 'May', ordered: 2300, delivered: 3300 },
     ],
     yAxisTicks: [0, 1000, 2000, 3000, 4000],
@@ -52,15 +66,15 @@ const initialState = {
   ],
 
   topSellingProducts: [
-    { name: 'Surf Excel', sold: 150, remaining: 50,  price: '2,500' },
-    { name: 'Rin',        sold: 120, remaining: 30,  price: '2,000' },
-    { name: 'Parle G',   sold: 200, remaining: 100, price: '500'   },
+    { name: 'Surf Excel', sold: 150, remaining: 50, price: '2,500' },
+    { name: 'Rin', sold: 120, remaining: 30, price: '2,000' },
+    { name: 'Parle G', sold: 200, remaining: 100, price: '500' },
   ],
 
   lowStockProducts: [
-    { name: 'Harpic', quantity: 5  },
-    { name: 'Ariel',  quantity: 8  },
-    { name: 'Rin',    quantity: 12 },
+    { name: 'Harpic', quantity: 5 },
+    { name: 'Ariel', quantity: 8 },
+    { name: 'Rin', quantity: 12 },
   ],
 
   loading: false,
